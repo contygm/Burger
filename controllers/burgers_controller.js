@@ -14,16 +14,16 @@ router.get('/burgers', function (req, res) {
 	});
 });
 
-router.post('/burgers/insertOne', function(req, res){
+router.post('/burgers/insert', function(req, res){
 	burger.insertOne(['burger_name'], [req.body.burger_name], function(){
 		res.redirect('/burgers');
 	})	
 })
 
-router.put('/burgers/updateOne/:id', function(req, res){
+router.put('/burgers/update/:id', function(req, res){
 	var condition = 'id = ' + req.params.id;
 
-	burger.update({devoured: true}, condition, function(){
+	burger.updateOne({devoured: true}, condition, function(){
 		res.redirect('/burgers');
 	})
 })

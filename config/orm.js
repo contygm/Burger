@@ -32,7 +32,7 @@ var orm = {
 
 // selectAll
 	selectAll: function(table, cb) {
-		var queryStr = 'SELECT * FROM' + table + ';';
+		var queryStr = 'SELECT * FROM ' + table + ';';
 		connection.query(queryStr, function(err, res){
 			if (err) throw err;
 			cb(res);
@@ -44,9 +44,11 @@ var orm = {
 
 		var queryStr = 'INSERT INTO ' + table;
 
-		queryStr += ' (' + cols.toString();
+		queryStr += ' (';
+		queryStr +=  cols.toString();
 		queryStr += ') VALUES (';
-		queryStr += printQuestionMarks(vals.length) + ') ';
+		queryStr += printQuestionMarks(vals.length);
+		queryStr += ') ';
 
 		connection.query(queryStr, function(err, res){
 			if (err) throw err;
@@ -59,8 +61,10 @@ var orm = {
 
 		var queryStr = 'UPDATE ' + table;
 
-		queryStr += ' SET ' + objToSql(objColVals);
-		queryStr += ' WHERE ' + condition;
+		queryStr += ' SET ';
+		queryStr += objToSql(objColVals);
+		queryStr += ' WHERE ';
+		queryStr += condition;
 
 		connection.query(queryStr, function(err, res){
 			if (err) throw err;
