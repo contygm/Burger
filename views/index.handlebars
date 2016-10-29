@@ -4,11 +4,11 @@
     {{#each burgers}}
     {{#unless this.devoured}}
         <li>
-        {{this.burger_name}}
+            {{this.id}}
+            {{this.burger_name}}
 
-            <form action="burgerss/update/{{this.id}}?_method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="true">
-                <button type="submit">Devour!</button>
+            <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" id="devour">Devour!</button>
             </form>
 
         </li>
@@ -31,10 +31,10 @@
 
 <h2>Add a Burger</h2>
 
-<form class="create-update-form" action="burgers/create" method="POST">
+<form class="create-update-form" action="burgers/insertOne" method="POST">
     <div class="form-group">
         <label for="ba">Burger Name:</label>
-        <input type="text" id="bn" name="burger_name">
+        <input type="text" id="burgName" name="burger_name">
     </div>
     
     <button type="submit">Add Burger!</button>
