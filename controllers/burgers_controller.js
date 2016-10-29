@@ -9,9 +9,23 @@ router.get('/', function (req, res) {
 router.get('/burgers', function (req, res) {
 	burger.selectAll(function(data) {
 		var burgObj = { burgers: data };
-		console.log(burgObj);
+		
 		res.render('index', burgObj);
 	});
 });
+
+router.post('/burgers/insertOne', function(req, res){
+	burger.insertOne(['burger_name'], [req.body.burger_name], function(){
+		res.redirect('/burgers');
+	})	
+})
+
+router.put('/burgers/updateOne/:id', function(req, res){
+	var condition = 'id = ' + req.params.id;
+
+	burger.update({devoured: true}, condition, function(){
+		res.redirect('/burgers');
+	})
+})
 
 module.exports = router;
