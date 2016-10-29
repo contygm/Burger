@@ -1,0 +1,41 @@
+<h2>Available Burgers:</h2>
+
+<ul>
+    {{#each burgers}}
+    {{#unless this.devoured}}
+        <li>
+        {{this.burger_name}}
+
+            <form action="burgerss/update/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit">Devour!</button>
+            </form>
+
+        </li>
+    {{/unless}}
+    {{/each}}
+</ul>
+
+<h2>Eaten Burgers:</h2>
+
+<ul>
+    {{#each burgers}}
+    {{#if this.devoured}}
+        <li>
+            {{this.id}}
+            {{this.burger_name}}
+        </li>
+    {{/if}}
+    {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+
+<form class="create-update-form" action="burgers/create" method="POST">
+    <div class="form-group">
+        <label for="ba">Burger Name:</label>
+        <input type="text" id="bn" name="burger_name">
+    </div>
+    
+    <button type="submit">Add Burger!</button>
+</form>
