@@ -26,6 +26,6 @@ router.put('/burgers/update/:id', function(req, res){
 	burger.updateOne({devoured: true}, condition, function(){
 		res.redirect('/burgers');
 	})
-})
+}) 
 
 module.exports = router;
